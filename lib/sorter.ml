@@ -16,6 +16,11 @@ let sorter (expr: string): stacks=
             | Num -> shunting_yard (s_number ^ (String.make 1 c)) (i+1)
             | Operator -> 
                 if String.length s_number > 0 then Stack.push num_stack {value = (Float.of_string s_number)};
+                (*let op_stack_length = Stack.length operator_stack in 
+                while op_stack_length > 0 do 
+                    if 
+                done*)
+                
                 Stack.push operator_stack (get_operator c);
                 shunting_yard "" (i+1);
     in
