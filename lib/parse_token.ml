@@ -1,6 +1,7 @@
 exception InvalidToken of char
 exception InvalidOperator of char
 exception InvalidNum of string
+exception DivisionByZero
 
 type association = ASSOC_NONE | ASSOC_RIGHT | ASSOC_LEFT    
 type num = {value: float} 
@@ -10,9 +11,9 @@ type token = Num | Operator
 let eval_uminus x _ = -1. *. x.value 
 let eval_exp x y = x.value ** y.value
 let eval_add x y = x.value +. y.value
-let eval_sub x y = x.value -. y.value
+let eval_sub x y = x.value -. y.value (*not x - y since evaluation is done from left to right*)
 let eval_mul x y = x.value *. y.value
-let eval_div x y = x.value /. y.value
+let eval_div x y = if y.value = 0. then raise DivisionByZero else x.value /. y.value
 let eval_none _ _ = 0.
 
 let get_operator (c: char): operator = 
