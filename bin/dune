@@ -1,0 +1,4 @@
+(executable
+ (public_name graphing-calculator)
+ (name main)
+ (libraries graphing_calculator))
