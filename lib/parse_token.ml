@@ -28,8 +28,15 @@ let get_operator (c: char): operator =
     |')' -> {op = ')'; prec = 0; assoc = ASSOC_NONE; unary = false; eval = eval_none}
     | _ -> raise (InvalidOperator c)
 
+let get_number (s: string): num =
+    match s with
+    | "e" -> {value = 2.71828}
+    | "pi" -> {value = Float.pi}
+    | _ -> {value = Float.of_string s}
+    
+    
 let get_token_type (c: char) = 
     match c with
     |'_' | '^' | '+' | '-' | '*'| '/' | '(' | ')' -> Operator
-    | '0'..'9' | '.' -> Num
+    | '0'..'9' | '.' | 'e' | 'p' | 'i' -> Num
     | _ -> raise (InvalidToken c)

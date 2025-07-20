@@ -1,7 +1,7 @@
 open Graphing_calculator.Calc
 
 let () = 
-  let expression = "2*(5*(3+6))/15-2" in
+  let expression = "2*(5*(3+6))/15-2+e^3*_pi" in
   let result = calculator expression in
 
   print_float result;

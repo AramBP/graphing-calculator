@@ -17,8 +17,10 @@ let calculator (expr: string): float =
         print_endline "";
         Array.iter (fun s -> print_char s.op) operator_stack.data;
         print_endline "";
+
+
         if i >= expr_length then begin
-            if String.length s_number > 0 then Stack.push num_stack {value = (Float.of_string s_number)}; 
+            if String.length s_number > 0 then Stack.push num_stack (get_number s_number); 
             ()
         end
         else 
@@ -26,7 +28,7 @@ let calculator (expr: string): float =
             match get_token_type c with
             | Num -> eval_infix_expression (s_number ^ (String.make 1 c)) (i+1)
             | Operator -> 
-                if String.length s_number > 0 then Stack.push num_stack {value = (Float.of_string s_number)};
+                if String.length s_number > 0 then Stack.push num_stack (get_number s_number);
                 let op_c = get_operator c in
                 match op_c.op with 
                 | '(' -> 
